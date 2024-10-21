@@ -69,10 +69,8 @@ const actualizarProducto = async (req, res = response) => {
 
     const producto = await Producto.findByIdAndUpdate(id, data, { new: true })
 
-    await producto
-        .populate("usuario", "nombre")
-        .populate("categoria", "nombre")
-        .execPopulate()
+    await producto.populate("usuario", "nombre")
+    await producto.populate("categoria", "nombre")
 
     res.json(producto)
 }
